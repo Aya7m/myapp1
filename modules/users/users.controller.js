@@ -13,10 +13,10 @@ const signin = (req, res) => {
 
 
     conn.execute(`select id,email,password from users where email='${req.body.email}'`, (err, data) => {
-        if (data.affectedRows) {
+        if (data?.length != 0) {
             let match = bycrpt.compareSync(req.body.password, data[0].password)
             if (match) {
-              res.json({ message: 'loin....token', userId: data[0].id })
+                res.json({ message: 'loin....token', userId: data[0].id })
             } else {
                 res.status(409).json({ message: 'incorrect password' })
             }

@@ -16,7 +16,7 @@ const signin = (req, res) => {
         if (data.affectedRows) {
             let match = bycrpt.compareSync(req.body.password, data[0].password)
             if (match) {
-              return  res.json({ message: 'loin....token', userId: data[0].id })
+              res.json({ message: 'loin....token', userId: data[0].id })
             } else {
                 res.status(409).json({ message: 'incorrect password' })
             }
